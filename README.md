@@ -19,13 +19,21 @@ Eg:
 will display: "1.2 Million"
 
 
-## Contributing
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-## History
+## Demo
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="cobra-bignum.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<cobra-bignum bignum="1230000" language="en"/>
+```
+
 
 
 ## License
