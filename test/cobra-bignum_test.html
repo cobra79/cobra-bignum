@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>cobra-bignum test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../cobra-bignum.html">
+  </head>
+  <body>
+
+    <test-fixture id="BasicTest">
+      <template>
+        <cobra-bignum bignum="123" language="de"></cobra-bignum>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="Million">
+      <template>
+        <cobra-bignum bignum="1230000" language="de"></cobra-bignum>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('cobra-bignum', () => {
+
+        test('Test if unchanged small number is displayed', () => {
+          const element = fixture('BasicTest');
+          assert.equal(element.bignum, '123');
+          assert.equal(element.display, '123');
+          assert.equal(element.unit, '');
+
+        });
+
+        test('Check if Million is displayed correctly', ()=>{
+           const millionElement = fixture('Million');
+           assert.equal(millionElement.display, '1.2');
+           assert.equal(millionElement.unit, 'Million');
+        });
+
+
+      });
+    </script>
+
+  </body>
+</html>
