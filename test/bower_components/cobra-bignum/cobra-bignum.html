@@ -1,0 +1,82 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../app-localize-behavior/app-localize-behavior.html">
+
+<dom-module id="cobra-bignum">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>[[display]] [[localize(unit)]]</h2>
+  </template>
+
+  <script>
+    /**
+     * `cobra-bignum`
+     * Element to make big number human readable
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+
+   // class CobraBignum extends Polymer.Element {
+    class CobraBignum extends Polymer.mixinBehaviors([Polymer.AppLocalizeBehavior], Polymer.Element){
+    //class CobraBignum extends Polymer.mixinBehaviors([Polymer.AppLocalizeBehavior], Polymer.Element){
+      static get is() { return 'cobra-bignum'; }
+      static get properties() {
+        return {
+            bignum:{
+                type:Number,
+                reflectToAttribute:true
+            },
+            display:{
+                type:Number,
+                computed:'getDisplayString(bignum)'
+            },
+            unit:
+                {
+                  type:String
+              },
+            language: {
+                value: 'en'
+            },
+            resources: {
+                value() {
+                    return {
+                        'en': { 'Billion': 'Billion' },
+                        'de': {'Billion': 'Milliarede'},
+                        'pt': {'Billion':'Trilhão'},
+                        'en': { 'Million': 'Billion' },
+                        'de': {'Million': 'Millionen'},
+                        'pt': {'Million':'Milhão'},
+                    }
+                }
+            }
+        };
+      }
+      getDisplayString(i)
+        {
+            if(i>1e9)
+            {
+                this.unit="Billion";
+                return Math.round(i/1e9*10)/10;
+            }
+            else if(i>1e6)
+            {
+                this.unit="Million";
+                return Math.round(i/1e6*10)/10;
+
+            }
+            else
+            {
+                this.unit = "";
+                return i;
+            }
+         }
+    }
+
+    window.customElements.define(CobraBignum.is, CobraBignum);
+  </script>
+</dom-module>
