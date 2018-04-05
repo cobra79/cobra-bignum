@@ -1,8 +1,5 @@
 # cobra-bignum
 Polymer element to display big numbers in a human readable format
-
-# cobra-bignum
-Polymer element to display big numbers in a human readable format
 ## Installation
 bower install cobra-bignum --save
 ## Usage
